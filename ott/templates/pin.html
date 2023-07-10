@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Enter PIN</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+    background-color: black;
+            margin: 0;
+            padding: 20px;
+        }
+        
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color:whitesmoke;
+            margin-top: 15%;
+            box-shadow :10%;
+            border-radius: 10%;
+        }
+        
+        form {
+          
+            background-color: white;
+            padding: 20px;
+            max-width: 450px;
+            margin: 0 auto;
+            align-items: center;
+
+        }
+        
+        .pin-input {
+            display: inline-block;
+            margin-right: 20px;
+            
+        }
+        
+        .pin-input input[type="password"] {
+            width: 25px;
+            height: 25px;
+            padding: 5px;
+            text-align: center;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            transition: border-color 0.3s ease-in-out;
+           background-color: #333;
+           color:#fff;
+           box-shadow: rgb(232, 13, 13) 5px 5px 5px;
+            
+        }
+        
+        .pin-input input[type="password"]:focus {
+            border-color: #4CAF50;
+            outline: none;
+        }
+        
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+            margin-left: 80px;
+        }
+        
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+        
+        p.error {
+            color: red;
+            margin-top: 10px;
+            margin-left: 700px;
+        }
+        
+        .profilename {
+            display: none;
+        }
+    </style>
+    <script>
+        function focusNextInput(currentInput, previousInputId, nextInputId) {
+            if (currentInput.value.length === 0 && event.keyCode === 8) {
+                document.getElementById(previousInputId).focus();
+            } else if (currentInput.value.length === 1) {
+                document.getElementById(nextInputId).focus();
+            }
+        }
+    </script>
+</head>
+<body>
+    <!-- <h2 style="color: white;">Enter PIN for Profile: {{ request.GET.profile_name }}</h2> -->
+    
+    {% if error_message %}
+        <p class="error">{{ error_message }}</p>
+    {% endif %}
+    
+    <form method="post" action="{% url 'unlock_pin' %}" style="margin-top: 15%;border-radius: 10%;">
+        {% csrf_token %}
+        <p style="text-align: center;">Enter PIN for {{ request.GET.profile_name }}</p>
+        <center>
+        <div>
+            <input type="text" class="profilename" value="{{ request.GET.profile_name }}" name="profilename" readonly>
+          </div>
+        <div class="pin-input">
+            <input type="password" name="digit1" id="digit1" maxlength="1" pattern="[0-9]" style="margin-left: 40px;" required
+                   onkeyup="focusNextInput(this, '', 'digit2')">
+        </div>
+
+        <div class="pin-input">
+            <input type="password" name="digit2" id="digit2" maxlength="1" pattern="[0-9]" required
+                   onkeyup="focusNextInput(this, 'digit1', 'digit3')">
+        </div>
+
+        <div class="pin-input">
+            <input type="password" name="digit3" id="digit3" maxlength="1" pattern="[0-9]" required
+                   onkeyup="focusNextInput(this, 'digit2', 'digit4')">
+        </div>
+
+        <div class="pin-input">
+            <input type="password" name="digit4" id="digit4" maxlength="1" pattern="[0-9]" required
+                   onkeyup="focusNextInput(this, 'digit3', '')">
+        </div>
+        <br>
+        <input type="submit" value="Unlock" style="margin-top: 40px; margin-right: 50px;">
+    </center>
+    </form>
+</body>
+</html>

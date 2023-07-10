@@ -1,0 +1,111 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Realm OTT Landing Page</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    .video-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
+      z-index: -1;
+    }
+
+    .video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: rgba(0, 0, 0, 0.5);
+      color: #fff;
+      font-size: 36px;
+      text-align: center;
+    }
+
+    .button-container {
+      margin-top: 30px;
+      opacity: 0;
+      animation-duration: 1s;
+      animation-fill-mode: forwards;
+    }
+
+    .button {
+      padding: 10px 20px;
+      font-size: 18px;
+      color: #fff;
+      background-color: orangered;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 90%;
+    }
+
+    .button:hover {
+      background-color: orangered;
+      color: black;
+    }
+
+    @keyframes fade-in {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="video-container">
+    <video class="video" id="myVideo" autoplay loop muted>
+      <source src="{% static 'videos/intro.mp4' %}" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+  </div>
+
+  <div class="content">
+    <div class="button-container">
+      <a href="{% url 'signup' %}"><button class="button">Get Started</button></a>
+     <a href="{% url 'signin' %}"> <button class="button">Sign In</button></a>
+    </div>
+  </div>
+
+  <script>
+    const video = document.getElementById('myVideo');
+    const buttonContainer = document.querySelector('.button-container');
+    const audioContext = new AudioContext();
+
+    // Create a source node from the video element
+    const source = audioContext.createMediaElementSource(video);
+
+    // Connect the source to the audio output
+    source.connect(audioContext.destination);
+
+    video.addEventListener('timeupdate', function() {
+      if (video.currentTime >= 7.3) {
+        video.pause();
+        buttonContainer.style.animationName = 'fade-in';
+        buttonContainer.style.opacity = 1;
+      }
+    });
+  </script>
+</body>
+</html>
