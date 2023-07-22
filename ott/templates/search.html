@@ -242,18 +242,21 @@
   <div class="no-results" id="no-results" style="display: none;">No results found.</div>
   <div class="category" >
     <center>
-    <div class="thumbnails">
-      {% for video in videos %}
-        <div class="thumbnail">
-          <img src="{{ video.thumbnail.url }}" alt="{{ video.title }} Thumbnail">
-          <div class="caption">
-            <center>
-              <b>{{ video.title }}</b>
-            </center>
-          </div>
-        </div>
-      {% endfor %}
-    </div>
+      <div class="thumbnails">
+        {% for video in videos %}
+          <a href="{% url 'movie_details' video.id %}">
+            <div class="thumbnail">
+              <img src="{{ video.thumbnail.url }}" alt="{{ video.title }} Thumbnail">
+              <div class="caption">
+                <center>
+                  <b>{{ video.title }}</b>
+                </center>
+              </div>
+            </div>
+          </a>
+        {% endfor %}
+      </div>
+      
   </center>
   </div>
   <script>

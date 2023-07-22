@@ -54,7 +54,6 @@ class Video(models.Model):
         ('documentaries', 'Documentaries'),
         ('others', 'Others'),
     ]
-
     GENRES_CHOICES = [
         ('1', 'Crime'),
         ('2', 'Thriller'),
@@ -66,13 +65,11 @@ class Video(models.Model):
         ('8', 'Action'),
         # Add more genre choices here
     ]
-
     CONTENT_AGE_RATINGS = [
         ('18+', '18+'),
         ('13+', '13+'),
         ('7+', '7+'),
     ]
-
     title = models.CharField(max_length=255)
     description = models.TextField()
     video_file = models.FileField(upload_to='videos/')
@@ -81,6 +78,5 @@ class Video(models.Model):
     category = models.CharField(max_length=255, choices=CATEGORY_CHOICES)
     genres = models.ForeignKey(Genres, on_delete=models.CASCADE)
     content_age_rating = models.CharField(max_length=255, choices=CONTENT_AGE_RATINGS)
-
     def __str__(self):
         return self.title

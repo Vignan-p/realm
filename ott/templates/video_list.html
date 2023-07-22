@@ -228,6 +228,35 @@
       position: absolute;
       right: 10px;
     }
+    .play-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: orangered;
+    color: white;
+  
+    position: relative;
+    overflow: hidden;
+    transition: box-shadow 0.3s; /* Apply the transition */
+    animation: buttonAnimation 1s infinite alternate;
+}
+
+/* Define the animation keyframes */
+@keyframes buttonAnimation {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Apply the shining effect on hover */
+.play-button:hover {
+    box-shadow: 0 0 10px 5px rgba(255, 255, 255, 0.8); /* Apply the shining effect with a little blur on hover */
+}
   </style>
 </head>
 
@@ -291,24 +320,23 @@
     <div>
       <div class="container">
         {% if videos %}
-  {% for video in videos %}
-    <div class="card" style="--clr: #009688">
-      <div class="img-box">
-        <img src="{{ video.thumbnail.url }}">
-      </div>
-      <div class="content">
-        <h2>{{ video.title }}</h2>
-        <p>{{ video.description }}</p>
-        <a href="{% url 'player' video.id %}" class="playBtn">
-          Play
-      </a>
-      </div>
-    </div>
-  {% endfor %}
-{% else %}
-  <p style="color: white;">No videos available</p>
-{% endif %}
-
+          {% for video in videos %}
+            <div class="card" style="--clr: #009688" onclick="redirectToMovie('{{ video.id }}')">
+              <div class="img-box">
+                <img src="{{ video.thumbnail.url }}">
+              </div>
+              <div class="content">
+                <h2 style="color: orangered;">{{ video.title }}</h2>
+                <p>{{ video.description }}</p>
+                <a href="{% url 'player' video.id %}" style=" color: white;background-color: orangered;" class="play-button">
+                  Play
+                </a>
+              </div>
+            </div>
+          {% endfor %}
+        {% else %}
+          <p style="color: white;">No videos available</p>
+        {% endif %}
       </div>
     </div>
   </div>
@@ -354,6 +382,9 @@
         dropdown.style.display = "none";
       }, 200);
     }
+    function redirectToMovie(videoId) {
+    window.location.href = "{% url 'movie_details' 0 %}".replace('0', videoId);
+  }
   </script>
 </body>
 

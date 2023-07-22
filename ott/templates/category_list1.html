@@ -530,14 +530,84 @@
             * {
       box-sizing: border-box;
     }
+    .navbar.fixed-top {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: black;
+  }
+  .category-title {
+  display: inline-block;
+}
 
+.genre-link {
+  color: white;
+  text-decoration: none;
+  position: relative;
+  display: inline-block;
+}
+
+.genre-link:hover .genre-name,
+.genre-link:focus .genre-name {
+  text-decoration: none;
+  color: aliceblue;
+}
+
+.explore-all {
+  position: static;
+  top: 100%;
+  left: 0;
+  display: inline-block;
+  color: orangered;
+  padding: 5px 10px;
+  white-space: nowrap;
+  font-size: 18px;
+  opacity: 0;
+  transform: translateX(-100%);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.genre-link:hover .explore-all,
+.genre-link:focus .explore-all {
+  opacity: 1;
+  transform: translateX(0);
+}
+.play-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: orangered;
+    color: white;
+  
+    position: relative;
+    overflow: hidden;
+    transition: box-shadow 0.3s; /* Apply the transition */
+    animation: buttonAnimation 1s infinite alternate;
+}
+
+/* Define the animation keyframes */
+@keyframes buttonAnimation {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Apply the shining effect on hover */
+.play-button:hover {
+    box-shadow: 0 0 10px 5px rgba(255, 255, 255, 0.8); /* Apply the shining effect with a little blur on hover */
+}
 
     
   </style>
   
 </head>
 <body>
-  <nav class="navbar navbar-expand-md text-white" style="color: white;">
+  <nav class="navbar navbar-expand-md text-white fixed-top" style="color: white;">
     <div class="container-fluid">
       <a href="#" class="navbar-brand">
         <img src="https://t3.ftcdn.net/jpg/04/95/07/84/240_F_495078406_GuAZpc17Kvz0dHzzORnQSCnz1jffatZb.jpg" width="50px" height="30px" alt="Logo">
@@ -656,13 +726,16 @@
                 <span class="dot" onclick="currentSlide(6)"></span>
                 <span class="dot" onclick="currentSlide(7)"></span>
             </div>
-    <h1>Categories</h1>
+    
     
     {% for genre in categories %}
     <div class="category-title">
-        <a style="color: white;" href="{% url 'video_list' genre.id %}">{{ genre.name }}</a>
+      <a class="genre-link" href="{% url 'video_list' genre.id %}">
+        <span class="genre-name">{{ genre.name }}</span>
+        <span class="explore-all">Explore all ></span>
+      </a>
     </div>
-    <div class="scroll-container">
+    <div class="scroll-container" style="margin-top: -100px;">
         <div class="scroll-buttons">
             <button class="backwardBtn">&#10094;</button>
             <button class="forwardBtn">&#10095;</button>
@@ -673,15 +746,15 @@
                     {% for video in videos %}
                         {% if video.genres == genre %}
                             <div class="container" id="card-{{ video.id }}">
-                                <div class="card" style="--clr: #009688">
+                                <div class="card" style="--clr: #009688;">
                                     <div class="img-box">
                                         <img src="{{ video.thumbnail.url }}">
                                     </div>
                                     <div class="content">
-                                        <h2>{{ video.title }}</h2>
+                                        <h2 style="color: orangered;">{{ video.title }}</h2>
                                         <p>{{ video.description }}</p>
-                                        <a href="{% url 'player' video.id %}">
-                                            Play
+                                        <a href="{% url 'player' video.id %}" style=" color: white;background-color: orangered;" class="play-button">
+                                          Play
                                         </a>
                                         <!-- <a href="{% url 'player' video.id %}" class="playBtn" target="_blank">
                                           Play

@@ -30,6 +30,7 @@
       margin: 0 auto;
       padding: 40px;
       background-color: #141414;
+      margin-top: 60px;
     }
 
     h1 {
@@ -143,9 +144,47 @@
     .small-login-button:focus {
       outline: none;
     }
+
+    .navbar {
+            background-color: black;
+            width: 100%;
+            padding: 10px 0;
+            display: flex;
+            justify-content: flex-start;
+            height: 80px;
+            
+        }
+
+        .navbar-brand {
+            padding: 5px;
+            margin-right: 10px;
+        }
+
+        .navbar-brand img {
+            width: 135px;
+            height: 68px;
+            margin-left: -10px;
+            margin-top: -10px;
+        }
+
+
+
   </style>
+
+
+<nav class="navbar navbar-expand-lg">
+  <a class="navbar-brand" href="#">
+      <img src="https://t3.ftcdn.net/jpg/04/95/07/84/240_F_495078406_GuAZpc17Kvz0dHzzORnQSCnz1jffatZb.jpg" alt="Logo" class="logo">
+  </a>
+</nav>
+
 </head>
 <body>
+
+
+  {% if error_message %}
+  <p style="color: red; margin-left: 40%;font-weight: bold;">{{ error_message }}</p>
+{% endif %}
   <div class="container">
     <h1>Add Profile</h1>
     <form method="post" enctype="multipart/form-data">
@@ -168,7 +207,7 @@
       <div class="form-group" id="pin-group" style="display: none;">
         <label for="pin">Enter PIN: (Optional)</label>
         <div class="password-container">
-          <input type="password" id="pin" name="pin">
+          <input type="password" id="pin" name="pin" maxlength="4">
           <span class="password-toggle" onclick="togglePassword('pin')">
             <img src="https://cdn-icons-png.flaticon.com/128/2824/2824779.png" alt="Show" width="16" height="16">
           </span>
@@ -177,7 +216,7 @@
       <div class="form-group" id="confirm-pin-group" style="display: none;">
         <label for="confirm-pin">Confirm PIN:</label>
         <div class="password-container">
-          <input type="password" id="confirm-pin" name="confirm-pin">
+          <input type="password" id="confirm-pin" name="cpin" maxlength="4">
           <span class="password-toggle" onclick="togglePassword('confirm-pin')">
             <img src="https://cdn-icons-png.flaticon.com/128/2824/2824779.png" alt="Show" width="16" height="16">
           </span>
@@ -187,8 +226,8 @@
         <label for="profile-photo" class="form-label">Profile Photo</label>
         <input type="file" class="form-control" id="profile-photo" name="profile_photo">
       </div>
-      <button type="submit" class="btn btn-primary" {% if profiles_count >= 4 %} disabled {% endif %}>
-        {% if profiles_count >= 4 %} Maximum Profiles Reached {% else %} Add Profile {% endif %}
+      <button type="submit" class="btn btn-primary" {% if profiles_count >= 3 %} disabled {% endif %}>
+        {% if profiles_count >= 3 %} Maximum Profiles Reached {% else %} Add Profile {% endif %}
       </button>
     </form>
   </div>
@@ -222,6 +261,9 @@
       }
     }
 
+
+
+    
     function togglePinFields() {
       var pinGroup = document.getElementById('pin-group');
       var confirmPinGroup = document.getElementById('confirm-pin-group');

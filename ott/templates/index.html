@@ -1,111 +1,454 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Realm OTT Landing Page</title>
+  <title>Animated OTT Landing Page</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <style>
+    /* Global Styles */
+
+
+  
+
+
+
+
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px;
+      background-color: #000;
+      
+    }
+   
+
     body {
       margin: 0;
       padding: 0;
       font-family: Arial, sans-serif;
+      overflow-x: hidden;
     }
 
-    .video-container {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100vh;
-      overflow: hidden;
-      z-index: -1;
-    }
+    /* Hero Section */
+   
+  /* Features Section */
 
-    .video {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
 
-    .content {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      background-color: rgba(0, 0, 0, 0.5);
-      color: #fff;
-      font-size: 36px;
+    /* Testimonials Section */
+    .testimonials {
+      padding: 80px 0;
+      background-color:black;
       text-align: center;
     }
 
-    .button-container {
-      margin-top: 30px;
+    .testimonials h2 {
+      font-size: 32px;
+      margin-bottom: 40px;
       opacity: 0;
-      animation-duration: 1s;
-      animation-fill-mode: forwards;
+      transform: translateY(50px);
+      animation: fade-in 1s forwards;
+      color: white;
     }
 
-    .button {
-      padding: 10px 20px;
+    .testimonial {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 40px;
+      opacity: 0;
+      transform: translateY(50px);
+      animation: slide-up 1s forwards;
+      animation-delay: 0.3s;
+    }
+
+    .testimonial-img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-right: 20px;
+    }
+
+    .testimonial-text {
       font-size: 18px;
-      color: #fff;
-      background-color: orangered;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      margin-top: 90%;
+      color: #777;
     }
 
-    .button:hover {
-      background-color: orangered;
-      color: black;
+    /* Pricing Section */
+  
+  
+
+    
+
+
+
+
+
+
+    /* Footer Section */
+    .footer {
+      padding: 40px 0;
+      background-color: #000;
+      color: #fff;
+      text-align: center;
+      height: 10px;
+        
+    }
+
+    .footer p {
+      font-size: 14px;
+      opacity: 0;
+      transform: translateY(50px);
+      animation: slide-up 1s forwards;
+      animation-delay: 0.3s;
+    }
+
+    /* Keyframes */
+    @keyframes slide-up {
+      from {
+        opacity: 0;
+        transform: translateY(100px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     @keyframes fade-in {
-      0% {
+      from {
         opacity: 0;
+        transform: translateY(50px);
       }
-      100% {
+      to {
         opacity: 1;
+        transform: translateY(0);
       }
     }
+
+
+    body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: black;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background-color: #000;
+        }
+
+        .logo {
+            width: 100px;
+            height: 100px;
+        }
+
+       
+
+        .text {
+            width: 50%;
+            color: #fff;
+            animation: slide-in 1s ease-out forwards;
+        }
+
+       
+
+
+    
+  
+
+
+.container {
+    position: relative;
+   height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+
+ 
+
+  
+  .text {
+    text-align: center;
+  }
+
+  .text h1 {
+    margin-bottom: 20px;
+    color: white;
+    font-weight: bold;
+    text-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
+    font-size: 80px;
+    opacity: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    animation: reveal-text 4s linear forwards;
+  }
+
+
+
+
+
+
+  .text h3 {
+    margin-bottom: 10px;
+    color: white;
+    font-weight: bold;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+    font-size: 20px;
+  }
+
+  #get-started {
+      display: inline-block;
+      background-color: orange;
+      color: #000;
+      font-size: 18px;
+      padding: 10px 20px;
+      border-radius: 30px;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+      cursor: pointer !important;
+    }
+
+    #get-started:hover {
+      background-color: #ffd700;
+      cursor: pointer;
+    }
+  a:hover{
+    cursor: pointer;
+  }
+
+
+  .footer p {
+    margin: 0;
+  }
+
+  .footer a {
+    color: white;
+    text-decoration: none;
+  }
+
+
+
+
+
+  .about-us {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #000;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .about-us-text {
+    flex: 1;
+    max-width: 50%;
+    color: #fff;
+  }
+
+  .about-us-text p {
+    font-size: 18px;
+    line-height: 1.6;
+  }
+
+  .about-us-img {
+    text-align: center;
+  }
+
+  .about-us-img img {
+    max-width: 600px;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin-left: 20px;
+  }
+
+
+  #about::first-letter{
+    color: orange;
+    font-size: 80px;
+  }
+
+  .features {
+  padding: 80px 0;
+  background-color:black;
+  text-align: center;
+}
+
+.features h2 {
+  font-size: 32px;
+  margin-bottom: 40px;
+  opacity: 0;
+  transform: translateY(50px);
+  animation: fade-in 1s forwards;
+  color: white;
+}
+
+.feature-list {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 40px;
+}
+
+.feature-item {
+  flex-basis: calc(33.33% - 20px);
+  opacity: 0;
+  transform: translateY(50px);
+  animation: slide-up 1s forwards;
+  animation-delay: 0.3s;
+  text-align: center;
+}
+
+.feature-icon {
+  font-size: 48px;
+  margin-bottom: 20px;
+  color: #777;
+}
+
+.feature-title {
+  font-size: 24px;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.feature-description {
+  color: #777;
+}
+
+.feature-image {
+  width: 250px;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: 20px;
+}
+
+
+#key::first-letter{
+  color: orange;
+  font-size: 80px;
+}
+ 
+
+#what::first-letter{
+  color: orange;
+  font-size: 80px;
+}
+
+
+
+
   </style>
 </head>
 <body>
-  <div class="video-container">
-    <video class="video" id="myVideo" autoplay loop muted>
-      <source src="{% static 'videos/intro.mp4' %}" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
-  </div>
+  <!-- Hero Section -->
 
-  <div class="content">
-    <div class="button-container">
-      <a href="{% url 'signup' %}"><button class="button">Get Started</button></a>
-     <a href="{% url 'signin' %}"> <button class="button">Sign In</button></a>
+ 
+  <div class="container">
+    <video autoplay loop muted playsinline id="background-video" style="position: absolute; top: 0; left: 0; width: 100vw; height: 100vh; object-fit: cover;">
+        <source src="{% static 'videos/intro.mp4' %}" type="video/mp4">
+        <!-- Add additional source elements for different video formats if needed -->
+    </video>
+    <div class="text" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center;">
+        <a href="{% url 'signup' %}"><button id="get-started" style="display: none; margin-top: 30%; margin-left:40%;">Get Started</button></a>
     </div>
+</div>
+
+
+   
   </div>
+   
+</div>
+
+
+
+<div class="about-us">
+  <div class="about-us-text">
+    <h1 id="about" style="font-size: 40px;">About Us</h1>
+    <p>
+      Realm OTT is a revolutionary streaming platform that offers a wide range of high-quality movies, series, and documentaries. Our platform delivers content over the internet, allowing you to enjoy your favorite shows whenever and wherever you want. Say goodbye to traditional broadcast and cable TV providers.
+    </p>
+    <p>
+      With Realm OTT, you have the freedom to personalize your streaming experience. Our advanced recommendation system tailors content suggestions based on your viewing preferences, ensuring you discover new and exciting entertainment options.
+    </p>
+    <p>
+      Whether you're at home or on the go, Realm OTT provides multi-device access, so you can stream your favorite shows on any device, be it your TV, smartphone, tablet, or computer. Enjoy seamless entertainment without any restrictions.
+    </p>
+    
+  </div>
+  <div class="about-us-img">
+    <img src="media/profile_photos/aboutus.jpg" alt="">
+  </div>
+</div>
+
+<section class="features">
+  <h2 id="key">Key Features</h2>
+  <div class="feature-list">
+    <div class="feature-item">
+      <img class="feature-image" src="https://images.unsplash.com/photo-1525869811964-53594bfcb4b0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8bW9iaWxlJTIwc3RyZWFtaW5nfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60" alt="Feature 1">
+      <h3 class="feature-title" style="color: white;">Mobile Streaming</h3>
+      <p class="feature-description"  style="font-weight: bold;">Stream your favorite movies and shows on any mobile device.</p>
+    </div>
+    <div class="feature-item">
+      <img class="feature-image" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS3MN-W3WdPG7i0nwCwBGH4OrwyBCESU-9ig322tKBcTudnVbvHPVg_WL2J31AX6qn8n7k&usqp=CAU" alt="Feature 4">
+      <h3 class="feature-title" style="color: white;">Multiple Devices</h3>
+      <p class="feature-description" style="font-weight: bold;">Seamlessly switch between devices and continue watching where you left off.</p>
+    </div>
+    <div class="feature-item">
+      <img class="feature-image" src="https://cdnl.iconscout.com/lottie/premium/thumb/download-arrow-4866145-4096935.gif" alt="Feature 5">
+      <h3 class="feature-title" style="color: white; ">Offline Downloads</h3>
+      <p class="feature-description"   style="font-weight: bold;">Download your favorite content and watch it offline, even without an internet connection.</p>
+    </div>
+  
+  </div>
+</section>
+
+  <!-- Testimonials Section -->
+  <section class="testimonials">
+    <h2 id="what">What Our Users Say</h2>
+    <div class="testimonial">
+      <img src="https://media.istockphoto.com/id/1388644810/photo/happy-caucasian-young-man-using-smart-phone-cellphone-for-calls-social-media-mobile.webp?b=1&s=170667a&w=0&k=20&c=e_YS2VT3isx_yAiqFVcbiZFpkEOGxMzsQ0q-vd0C2TQ=" alt="User 1" class="testimonial-img">
+      <p class="testimonial-text text-white" style="font-weight: bold;">"Realm has completely changed the way I watch movies and shows. The content selection is amazing, and the streaming quality is top-notch!"</p>
+    </div>
+    <div class="testimonial">
+      <img src="https://media.istockphoto.com/id/1293903541/photo/young-woman-stock-photo.webp?b=1&s=170667a&w=0&k=20&c=WvsjH_3ggq4CFyUKAlhY8fiPq-80Yfv7zWZz9APEsJI=" alt="User 2" class="testimonial-img">
+      <p class="testimonial-text text-white" style="font-weight: bold;">"I love how Realm recommends new content based on my preferences. It's like having a personalized movie curator!"</p>
+    </div>
+  </section>
+
+
+  <!-- Footer Section -->
+  <footer class="footer">
+    
+      <p>&copy; 2023 Realm. All rights reserved.</p>
+    </div>
+  </footer>
 
   <script>
-    const video = document.getElementById('myVideo');
-    const buttonContainer = document.querySelector('.button-container');
-    const audioContext = new AudioContext();
+    const video = document.getElementById("background-video");
+        const getStartedButton = document.getElementById("get-started");
 
-    // Create a source node from the video element
-    const source = audioContext.createMediaElementSource(video);
+        // Event listener for video pause event
+        video.addEventListener("pause", function() {
+            getStartedButton.style.display = "block";
+        });
 
-    // Connect the source to the audio output
-    source.connect(audioContext.destination);
-
-    video.addEventListener('timeupdate', function() {
-      if (video.currentTime >= 7.3) {
-        video.pause();
-        buttonContainer.style.animationName = 'fade-in';
-        buttonContainer.style.opacity = 1;
-      }
-    });
+        // Pause the video after 5 seconds
+        setTimeout(function() {
+            video.pause();
+        }, 7570);
   </script>
 </body>
+
 </html>

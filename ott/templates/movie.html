@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+        .bgimage {
+            width: 100%;
+            height: 100%;
+            background-image: linear-gradient(to left, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 1)), url('{{ video.thumbnail.url }}');
+            background-size: cover;
+            background-color: black;
+            padding: 0;
+            margin: 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+        }
+        h1 {
+            color: white;
+            font-family: "Arial", sans-serif; /* Replace with your desired font */
+            margin-top: 250px;
+            margin-left: 100px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Add shadow effect */
+            font-size: 60px;
+        }
+        p {
+            color: white;
+            font-size: 22px;
+        }
+        .subs {
+            color: orangered;
+        }
+        button {
+            width: 120px;
+            height: 40px;
+            background-color: orangered;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: darkorange;
+        }
+    </style>
+</head>
+<body>
+    <div class="bgimage">
+        <h1>{{ video.title }}</h1>
+        <div style="margin-left: 100px; width: 700px;">
+            <p>{{ video.description }}</p>
+            <!-- <p><span class="subs"><b>Starring: </b></span>{{ video.genres.name }}</p> -->
+            <p><span class="subs"><b>Genre: </b></span>{{ video.genres.name }}</p>
+            <a href="{% url 'player' video.id %}">
+            <button>▶ Play Now</button>
+            </a>
+        </div>
+    </div>
+</body>
+</html>
